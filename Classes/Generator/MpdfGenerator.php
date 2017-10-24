@@ -65,7 +65,7 @@ class MpdfGenerator implements PdfGeneratorInterface {
     }
 
     public function setOption($name, $value) {
-        $backwardsCompatabilityOptionNames = array(
+        $backwardsCompatibilityOptionNames = array(
             'marginLeft' => 'margin_left',
             'marginRight' => 'margin_right',
             'marginTop' => 'margin_top',
@@ -74,8 +74,8 @@ class MpdfGenerator implements PdfGeneratorInterface {
             'marginFooter' => 'margin_footer',
             'fontSize' => 'default_font_size'
         );
-        if (isset($backwardsCompatabilityOptionNames[$name])) {
-            $name = $backwardsCompatabilityOptionNames[$name];
+        if (isset($backwardsCompatibilityOptionNames[$name])) {
+            $name = $backwardsCompatibilityOptionNames[$name];
         }
         if (!isset($this->options[$name])) {
             throw new UnknownGeneratorOptionException('The option "' . $name . '" you\'re trying to set does not exist. This generator supports these options: ' . chr(10) . chr(10) . implode(chr(10), array_keys($this->options)), 1421314368);
