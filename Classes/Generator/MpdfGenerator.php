@@ -72,7 +72,7 @@ class MpdfGenerator implements PdfGeneratorInterface {
             'marginBottom' => 'margin_bottom',
             'marginHeader' => 'margin_header',
             'marginFooter' => 'margin_footer',
-            'fontSize' => 'default_font_size'
+            'fontSize' => 'font_size'
         );
         if (isset($backwardsCompatibilityOptionNames[$name])) {
             $name = $backwardsCompatibilityOptionNames[$name];
