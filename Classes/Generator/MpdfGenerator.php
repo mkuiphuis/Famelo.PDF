@@ -96,26 +96,39 @@ class MpdfGenerator implements PdfGeneratorInterface {
     }
 
     public function sendPdf($content, $filename = NULL) {
-        $previousErrorReporting = error_reporting(0);
+        $previousErrorReporting = error_reporting(1);
         $pdf = $this->getMpdfInstance();
-        $pdf->WriteHTML($content);
+        $splittedContent = $this->splitContent($content);
+        foreach($splittedContent as $string) {
+            $pdf->WriteHTML($string);
+        }
         $pdf->Output($filename, 'i');
         error_reporting($previousErrorReporting);
     }
 
     public function downloadPdf($content, $filename = NULL) {
-        $previousErrorReporting = error_reporting(0);
+        $previousErrorReporting = error_reporting(1);
         $pdf = $this->getMpdfInstance();
-        $pdf->WriteHTML($content);
+        $splittedContent = $this->splitContent($content);
+        foreach($splittedContent as $string) {
+            $pdf->WriteHTML($string);
+        }
         $pdf->Output($filename, 'd');
         error_reporting($previousErrorReporting);
     }
 
     public function savePdf($content, $filename) {
-        $previousErrorReporting = error_reporting(0);
+        $previousErrorReporting = error_reporting(1);
         $pdf = $this->getMpdfInstance();
-        $pdf->WriteHTML($content);
+        $splittedContent = $this->splitContent($content);
+        foreach($splittedContent as $string) {
+            $pdf->WriteHTML($string);
+        }
         $pdf->Output($filename, 'f');
         error_reporting($previousErrorReporting);
+    }
+
+    protected function splitContent($content) {
+        return str_split($content, 900000);
     }
 }
